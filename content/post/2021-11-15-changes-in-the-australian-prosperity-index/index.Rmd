@@ -16,9 +16,7 @@ library(highcharter)
 library(viridisLite)
 ```
 
-## Changes in the Australian prosperity Index（2010-2020）
-
-&nbsp;&nbsp;&nbsp;&nbsp;In the overall Prosperity Index standings, Australia comes in 10th place in 2020. What pillars of prosperity do Australia have to support its dominance? Have the pillars of its prosperity changed significantly over the decade?
+&nbsp;&nbsp;&nbsp;&nbsp;In the overall Prosperity Index standings, Australia comes in 16th place in 2020. What pillars of prosperity do Australia have to support its dominance? Have the pillars of its prosperity changed significantly over the decade?
 
 ## The pillars of Australia change in the score (2010-2020)
 
