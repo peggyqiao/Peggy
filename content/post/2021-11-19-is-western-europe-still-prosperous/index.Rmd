@@ -24,7 +24,7 @@ Europe <- read_excel("Legatum_Prosperity_Index_Full_2020_Data_Set.xlsx",sheet = 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Global prosperity had increased steadily in the decade up until the pandemic.struck, owing to improved people's lived experiences and more open economies. The global challenges raised by COVID-19 are considerable, however, it is encouraging that global prosperity in 2020 has reached its highest level ever (Legatum Institute, 2020). The prosperity of Western Europe has dominated the world for centuries, but how does its prosperity rank from 2010 to 2020? What are the pillars of its prosperity? 
   
-&nbsp;&nbsp;&nbsp;&nbsp;This article is aiming to be a guide, reminding decision makers of what builds and protects prosperity in the most challenging of times and offering insights for investors around the world. It is intended to help you understand where the overall prosperity of Western Europe stands in the world, the pillars of prosperity change from 2010 to 2020 and noteworthy countries. This flowchart could help you quickly understand the structure of this blog.n order to facilitate a clear understanding, I drew a flow chart and put it below
+&nbsp;&nbsp;&nbsp;&nbsp;This article is aiming to be a guide, reminding decision makers of what builds and protects prosperity in the most challenging of times and offering insights for investors around the world. It is intended to help you understand where the overall prosperity of Western Europe stands in the world, the pillars of prosperity change from 2010 to 2020 and noteworthy countries. This flowchart could help you quickly understand the structure of this blog.
   
 
 ```{r echo=FALSE}
