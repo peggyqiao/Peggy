@@ -1,0 +1,436 @@
+---
+title: Is Western Europe still prosperous
+author: peggy
+date: '2021-11-19'
+slug: is-western-europe-still-prosperous
+categories:
+  - R
+tags:
+  - plot
+  - R Markdown
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index_files/viz/viz.js"></script>
+<link href="{{< blogdown/postref >}}index_files/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/grViz-binding/grViz.js"></script>
+<script src="{{< blogdown/postref >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index_files/lightable/lightable.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/jquery/jquery.min.js"></script>
+<script src="{{< blogdown/postref >}}index_files/proj4js/proj4.js"></script>
+<link href="{{< blogdown/postref >}}index_files/highcharts/css/motion.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index_files/highcharts/highcharts.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/highcharts-3d.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/highcharts-more.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/stock.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/map.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/annotations.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/data.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/drilldown.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/item-series.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/offline-exporting.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/overlapping-datalabels.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/exporting.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/export-data.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/funnel.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/heatmap.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/treemap.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/sankey.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/dependency-wheel.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/organization.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/solid-gauge.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/streamgraph.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/sunburst.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/vector.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/wordcloud.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/xrange.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/tilemap.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/venn.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/gantt.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/timeline.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/parallel-coordinates.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/bullet.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/coloraxis.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/dumbbell.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/lollipop.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/series-label.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/plugins/motion.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/custom/reset.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highcharts/modules/boost.js"></script>
+<script src="{{< blogdown/postref >}}index_files/highchart-binding/highchart.js"></script>
+
+
+<p>    Global prosperity had increased steadily in the decade up until the pandemic.struck, owing to improved people’s lived experiences and more open economies. The global challenges raised by COVID-19 are considerable, however, it is encouraging that global prosperity in 2020 has reached its highest level ever (Legatum Institute, 2020). The prosperity of Western Europe has dominated the world for centuries, but how does its prosperity rank from 2010 to 2020? What are the pillars of its prosperity?</p>
+<p>    This article is aiming to be a guide, reminding decision makers of what builds and protects prosperity in the most challenging of times and offering insights for investors around the world. It is intended to help you understand where the overall prosperity of Western Europe stands in the world, the pillars of prosperity change from 2010 to 2020 and noteworthy countries. This flowchart could help you quickly understand the structure of this blog.n order to facilitate a clear understanding, I drew a flow chart and put it below</p>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"\ndigraph flowchart {\n# node definitions with substituted label text\nnode [fontname = Helvetica, shape = rectangle]\ntab1 [label = Overall_ranking]\ntab2 [label = rank]\ntab3 [label = Score]\ntab5 [label = Step_back_TOP10]\ntab7 [label = Noteworthy_countries]\ntab6 [label = Progress_TOP10]\ntab9 [label = Switzerland]\ntab4 [label = change_in_10_years]\ntab8 [label = Greece]\n# edge definitions with the node IDs\ntab1 -> tab2;\ntab1 -> tab3;\ntab2 -> tab4;\ntab3 -> tab4;\ntab4 -> tab5;\ntab4 -> tab6;\ntab6 -> tab7;\ntab5 -> tab7;\ntab7 -> tab8;\ntab7 -> tab9;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="overall-ranking-of-western-europe-2010-2020" class="section level2">
+<h2>Overall ranking of Western Europe (2010-2020)</h2>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+area_group
+</th>
+<th style="text-align:right;">
+2010
+</th>
+<th style="text-align:right;">
+2011
+</th>
+<th style="text-align:right;">
+2012
+</th>
+<th style="text-align:right;">
+2013
+</th>
+<th style="text-align:right;">
+2014
+</th>
+<th style="text-align:right;">
+2015
+</th>
+<th style="text-align:right;">
+2016
+</th>
+<th style="text-align:right;">
+2017
+</th>
+<th style="text-align:right;">
+2018
+</th>
+<th style="text-align:right;">
+2019
+</th>
+<th style="text-align:right;">
+2020
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+North America
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+Western Europe
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Eastern Europe
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Latin America and the Caribbean
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Asia-Pacific
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Middle East and North Africa
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sub-Saharan Africa
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+</tbody>
+</table>
+<p>    Western Europe still leads the world in prosperity from 2010 to 2020, and the overall ranking across continents has been remarkably stable. What pillars of prosperity do Western Europe have to support its dominance? Have the pillars of its prosperity changed significantly over the decade?</p>
+<div id="the-pillars-of-western-europe-change-in-the-rankings-2010-2020" class="section level3">
+<h3>The pillars of Western Europe change in the rankings (2010-2020)</h3>
+<div id="htmlwidget-2" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"rank"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"Economic Quality","data":[{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2018","rank":2,"y":2,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"},{"name":"Education","data":[{"area_group":"Western Europe","pillar_name":"Education","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Education","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Education","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Education","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Education","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Education","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Education","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Education","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Education","year":"2018","rank":2,"y":2,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Education","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Education","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"},{"name":"Enterprise Conditions","data":[{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2018","rank":2,"y":2,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"},{"name":"Governance","data":[{"area_group":"Western Europe","pillar_name":"Governance","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2018","rank":1,"y":1,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"},{"name":"Health","data":[{"area_group":"Western Europe","pillar_name":"Health","year":"2010","rank":1,"y":1,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Health","year":"2011","rank":1,"y":1,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Health","year":"2012","rank":1,"y":1,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Health","year":"2013","rank":1,"y":1,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Health","year":"2014","rank":1,"y":1,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Health","year":"2015","rank":1,"y":1,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Health","year":"2016","rank":1,"y":1,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Health","year":"2017","rank":1,"y":1,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Health","year":"2018","rank":1,"y":1,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Health","year":"2019","rank":1,"y":1,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Health","year":"2020","rank":1,"y":1,"name":"2020"}],"type":"column"},{"name":"Investment Environment","data":[{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2018","rank":2,"y":2,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"},{"name":"Living Conditions","data":[{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2010","rank":1,"y":1,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2011","rank":1,"y":1,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2012","rank":1,"y":1,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2013","rank":1,"y":1,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2014","rank":1,"y":1,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2015","rank":1,"y":1,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2016","rank":1,"y":1,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2017","rank":1,"y":1,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2018","rank":1,"y":1,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2019","rank":1,"y":1,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2020","rank":1,"y":1,"name":"2020"}],"type":"column"},{"name":"Market Access and Infrastructure","data":[{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2018","rank":2,"y":2,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"},{"name":"Natural Environment","data":[{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2018","rank":2,"y":2,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"},{"name":"Personal Freedom","data":[{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2010","rank":1,"y":1,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2011","rank":1,"y":1,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2012","rank":1,"y":1,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2013","rank":1,"y":1,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2014","rank":1,"y":1,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2015","rank":1,"y":1,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2016","rank":1,"y":1,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2017","rank":1,"y":1,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2018","rank":1,"y":1,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2019","rank":1,"y":1,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2020","rank":1,"y":1,"name":"2020"}],"type":"column"},{"name":"Safety and Security","data":[{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2010","rank":1,"y":1,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2011","rank":1,"y":1,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2012","rank":1,"y":1,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2013","rank":1,"y":1,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2014","rank":1,"y":1,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2015","rank":1,"y":1,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2016","rank":1,"y":1,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2017","rank":1,"y":1,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2018","rank":1,"y":1,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2019","rank":1,"y":1,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2020","rank":1,"y":1,"name":"2020"}],"type":"column"},{"name":"Social Capital","data":[{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2010","rank":2,"y":2,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2011","rank":2,"y":2,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2012","rank":2,"y":2,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2013","rank":2,"y":2,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2014","rank":2,"y":2,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2015","rank":2,"y":2,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2016","rank":2,"y":2,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2017","rank":2,"y":2,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2018","rank":2,"y":2,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2019","rank":2,"y":2,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2020","rank":2,"y":2,"name":"2020"}],"type":"column"}],"xAxis":{"type":"category","title":{"text":"year"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>    Western Europe was the region with higher levels of prosperity since its pillars used to rank first or second in all regions. And its pillar rankings have not changed significantly, except its governance, which rose from second to first in 2018. The report from European parliament shows that cohesion policy has strengthened the capacity for good governance and administration throughout Europe. This might be one reason why governance in Western Europe has increased significantly.</p>
+</div>
+<div id="the-pillars-of-western-europe-change-in-the-score-2010-2020" class="section level3">
+<h3>The pillars of Western Europe change in the score (2010-2020)</h3>
+<div id="htmlwidget-3" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"score"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"Economic Quality","data":[{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2010","score":67.3842733254,"y":67.3842733254,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2011","score":66.8011768386,"y":66.8011768386,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2012","score":66.6722000237,"y":66.6722000237,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2013","score":66.0956361837,"y":66.0956361837,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2014","score":65.9030237296,"y":65.9030237296,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2015","score":65.9647389479,"y":65.9647389479,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2016","score":66.4058814067,"y":66.4058814067,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2017","score":67.2669705436,"y":67.2669705436,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2018","score":68.412280731,"y":68.412280731,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2019","score":68.7109384405,"y":68.7109384405,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Economic Quality","year":"2020","score":68.8658052949,"y":68.8658052949,"name":"2020"}],"type":"line"},{"name":"Education","data":[{"area_group":"Western Europe","pillar_name":"Education","year":"2010","score":80.0550938603,"y":80.0550938603,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Education","year":"2011","score":80.3362392249,"y":80.3362392249,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Education","year":"2012","score":80.5712091802,"y":80.5712091802,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Education","year":"2013","score":81.137400228,"y":81.137400228,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Education","year":"2014","score":81.2567965643,"y":81.2567965643,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Education","year":"2015","score":81.4526683988,"y":81.4526683988,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Education","year":"2016","score":81.8077172381,"y":81.8077172381,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Education","year":"2017","score":82.1192807518,"y":82.1192807518,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Education","year":"2018","score":82.3408224273,"y":82.3408224273,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Education","year":"2019","score":82.3658619992,"y":82.3658619992,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Education","year":"2020","score":82.1696674377,"y":82.1696674377,"name":"2020"}],"type":"line"},{"name":"Enterprise Conditions","data":[{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2010","score":74.4256421548,"y":74.4256421548,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2011","score":74.4210775087,"y":74.4210775087,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2012","score":74.6145133546,"y":74.6145133546,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2013","score":74.9655567783,"y":74.9655567783,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2014","score":75.4432050261,"y":75.4432050261,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2015","score":75.844756563,"y":75.844756563,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2016","score":75.812439411,"y":75.812439411,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2017","score":76.1558205238,"y":76.1558205238,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2018","score":76.7681826691,"y":76.7681826691,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2019","score":76.9870122135,"y":76.9870122135,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Enterprise Conditions","year":"2020","score":76.6522274635,"y":76.6522274635,"name":"2020"}],"type":"line"},{"name":"Governance","data":[{"area_group":"Western Europe","pillar_name":"Governance","year":"2010","score":77.2771372246,"y":77.2771372246,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2011","score":77.1421540649,"y":77.1421540649,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2012","score":77.247035476,"y":77.247035476,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2013","score":76.9891322904,"y":76.9891322904,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2014","score":76.8879303014,"y":76.8879303014,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2015","score":76.7258026995,"y":76.7258026995,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2016","score":77.5840184668,"y":77.5840184668,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2017","score":78.5673781486,"y":78.5673781486,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2018","score":78.6759725744,"y":78.6759725744,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2019","score":78.5088210072,"y":78.5088210072,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Governance","year":"2020","score":78.3278299005,"y":78.3278299005,"name":"2020"}],"type":"line"},{"name":"Health","data":[{"area_group":"Western Europe","pillar_name":"Health","year":"2010","score":79.9515853802,"y":79.9515853802,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Health","year":"2011","score":80.1864487059,"y":80.1864487059,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Health","year":"2012","score":80.8484418484,"y":80.8484418484,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Health","year":"2013","score":80.9827458935,"y":80.9827458935,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Health","year":"2014","score":81.1181894345,"y":81.1181894345,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Health","year":"2015","score":81.4425181811,"y":81.4425181811,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Health","year":"2016","score":81.9305781824,"y":81.9305781824,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Health","year":"2017","score":81.7849389086,"y":81.7849389086,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Health","year":"2018","score":81.9381570431,"y":81.9381570431,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Health","year":"2019","score":82.0835654537,"y":82.0835654537,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Health","year":"2020","score":82.0417447687,"y":82.0417447687,"name":"2020"}],"type":"line"},{"name":"Investment Environment","data":[{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2010","score":74.4863873172,"y":74.4863873172,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2011","score":72.9591339287,"y":72.9591339287,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2012","score":72.9382035298,"y":72.9382035298,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2013","score":72.4892352662,"y":72.4892352662,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2014","score":72.1153388511,"y":72.1153388511,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2015","score":72.2448457508,"y":72.2448457508,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2016","score":72.6231099962,"y":72.6231099962,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2017","score":73.5498489658,"y":73.5498489658,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2018","score":74.13158199,"y":74.13158199,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2019","score":74.4204169013,"y":74.4204169013,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Investment Environment","year":"2020","score":74.4248395584,"y":74.4248395584,"name":"2020"}],"type":"line"},{"name":"Living Conditions","data":[{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2010","score":93.2313761175,"y":93.2313761175,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2011","score":92.8225628736,"y":92.8225628736,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2012","score":93.2203516443,"y":93.2203516443,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2013","score":93.286276706,"y":93.286276706,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2014","score":93.1890846977,"y":93.1890846977,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2015","score":92.8638502009,"y":92.8638502009,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2016","score":93.436105028,"y":93.436105028,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2017","score":93.5488248405,"y":93.5488248405,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2018","score":93.6108751519,"y":93.6108751519,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2019","score":94.163544853,"y":94.163544853,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Living Conditions","year":"2020","score":94.017965333,"y":94.017965333,"name":"2020"}],"type":"line"},{"name":"Market Access and Infrastructure","data":[{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2010","score":77.4740102542,"y":77.4740102542,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2011","score":77.7581694139,"y":77.7581694139,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2012","score":78.1426926117,"y":78.1426926117,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2013","score":77.9249808667,"y":77.9249808667,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2014","score":77.4990458618,"y":77.4990458618,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2015","score":77.1560768394,"y":77.1560768394,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2016","score":77.3146654548,"y":77.3146654548,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2017","score":78.5155231369,"y":78.5155231369,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2018","score":79.6231191288,"y":79.6231191288,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2019","score":79.7834921757,"y":79.7834921757,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Market Access and Infrastructure","year":"2020","score":79.7613746943,"y":79.7613746943,"name":"2020"}],"type":"line"},{"name":"Natural Environment","data":[{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2010","score":65.4795129488,"y":65.4795129488,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2011","score":65.1720487259,"y":65.1720487259,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2012","score":65.7012780234,"y":65.7012780234,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2013","score":65.2738585825,"y":65.2738585825,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2014","score":65.7199518808,"y":65.7199518808,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2015","score":64.8665060929,"y":64.8665060929,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2016","score":65.1411756966,"y":65.1411756966,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2017","score":65.2286742511,"y":65.2286742511,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2018","score":65.4213855056,"y":65.4213855056,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2019","score":65.3713926054,"y":65.3713926054,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Natural Environment","year":"2020","score":65.087041702,"y":65.087041702,"name":"2020"}],"type":"line"},{"name":"Personal Freedom","data":[{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2010","score":81.2012601378,"y":81.2012601378,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2011","score":81.1612752471,"y":81.1612752471,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2012","score":81.9887332356,"y":81.9887332356,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2013","score":81.9629031488,"y":81.9629031488,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2014","score":81.9352596275,"y":81.9352596275,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2015","score":82.9469294158,"y":82.9469294158,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2016","score":82.1317341643,"y":82.1317341643,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2017","score":81.683701727,"y":81.683701727,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2018","score":81.9445257626,"y":81.9445257626,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2019","score":82.0747314015,"y":82.0747314015,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Personal Freedom","year":"2020","score":82.4637007861,"y":82.4637007861,"name":"2020"}],"type":"line"},{"name":"Safety and Security","data":[{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2010","score":81.5615093872,"y":81.5615093872,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2011","score":82.1732636693,"y":82.1732636693,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2012","score":83.8273051863,"y":83.8273051863,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2013","score":83.1501992659,"y":83.1501992659,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2014","score":84.1789514062,"y":84.1789514062,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2015","score":83.6365146708,"y":83.6365146708,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2016","score":82.5983005469,"y":82.5983005469,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2017","score":82.5568059539,"y":82.5568059539,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2018","score":82.2026433474,"y":82.2026433474,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2019","score":84.2934018923,"y":84.2934018923,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Safety and Security","year":"2020","score":83.555637758,"y":83.555637758,"name":"2020"}],"type":"line"},{"name":"Social Capital","data":[{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2010","score":61.612514516,"y":61.612514516,"name":"2010"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2011","score":61.7219510338,"y":61.7219510338,"name":"2011"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2012","score":61.3342140664,"y":61.3342140664,"name":"2012"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2013","score":61.5908324176,"y":61.5908324176,"name":"2013"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2014","score":60.5477024451,"y":60.5477024451,"name":"2014"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2015","score":61.9019905053,"y":61.9019905053,"name":"2015"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2016","score":62.2787438004,"y":62.2787438004,"name":"2016"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2017","score":61.8192604805,"y":61.8192604805,"name":"2017"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2018","score":63.5900446471,"y":63.5900446471,"name":"2018"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2019","score":62.2930225954,"y":62.2930225954,"name":"2019"},{"area_group":"Western Europe","pillar_name":"Social Capital","year":"2020","score":62.8201042565,"y":62.8201042565,"name":"2020"}],"type":"line"}],"xAxis":{"type":"category","title":{"text":"year"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>    There has been no significant change in scores for each of the pillars over the past decade, however, it is worth mentioning that living conditions has always been the main scoring point for Western European countries and social capital is relatively backward compared with other pillars. Therefore, Western European countries may need to redouble their efforts on social capital if they intend to overtake North America as the most prosperous region. However, increases in social capital are often accompanied by decreases in safety and security, which could be seen in the dynamic graph above (Click on the other elements, leaving only these two elements). So, Western European governments also need to focus on safety and security monitoring at the same time.</p>
+</div>
+</div>
+<div id="year-change-ranking" class="section level2">
+<h2>10-year change ranking</h2>
+<p>    On the premise of understanding the overall ranking changes in Western Europe, let’s take a look at which countries in Western Europe have the greatest decline and progress in the ranking.(Note that I use the data in 2010 minus the 2020 data, so when the score is positive, it shows that the ranking is rising. On the contrary, the ranking decreases.)</p>
+<div id="step-back-top10" class="section level3">
+<h3>Step back TOP10</h3>
+<div id="htmlwidget-4" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"rankchange"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"area_name":"Greece","pillar_name":"Investment Environment","rankchange":-39,"pillar":"Greece-Investment Environment","y":-39,"name":"Greece-Investment Environment"},{"area_name":"Belgium","pillar_name":"Social Capital","rankchange":-36,"pillar":"Belgium-Social Capital","y":-36,"name":"Belgium-Social Capital"},{"area_name":"Italy","pillar_name":"Social Capital","rankchange":-31,"pillar":"Italy-Social Capital","y":-31,"name":"Italy-Social Capital"},{"area_name":"Cyprus","pillar_name":"Economic Quality","rankchange":-26,"pillar":"Cyprus-Economic Quality","y":-26,"name":"Cyprus-Economic Quality"},{"area_name":"France","pillar_name":"Safety and Security","rankchange":-14,"pillar":"France-Safety and Security","y":-14,"name":"France-Safety and Security"},{"area_name":"United Kingdom","pillar_name":"Health","rankchange":-13,"pillar":"United Kingdom-Health","y":-13,"name":"United Kingdom-Health"},{"area_name":"Cyprus","pillar_name":"Investment Environment","rankchange":-12,"pillar":"Cyprus-Investment Environment","y":-12,"name":"Cyprus-Investment Environment"},{"area_name":"France","pillar_name":"Economic Quality","rankchange":-12,"pillar":"France-Economic Quality","y":-12,"name":"France-Economic Quality"},{"area_name":"Austria","pillar_name":"Health","rankchange":-11,"pillar":"Austria-Health","y":-11,"name":"Austria-Health"},{"area_name":"Belgium","pillar_name":"Safety and Security","rankchange":-11,"pillar":"Belgium-Safety and Security","y":-11,"name":"Belgium-Safety and Security"}],"type":"bar"}],"xAxis":{"type":"category","title":{"text":"pillar"},"categories":null},"colors":["#000004FF","#56106EFF","#BB3754FF","#F98C0AFF","#FCFFA4FF"]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>    Belgium and Cyprus have two pillars on this list, so these two countries might have seen their prosperity deteriorate over the last few years. Decision makers of these countries should beware the trap of falling into a mindset of an overdeveloped society and pay more attention to strengthen their economy or social developments.</p>
+</div>
+<div id="progress-top10" class="section level3">
+<h3>Progress TOP10</h3>
+<div id="htmlwidget-5" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"rankchange"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"group":"group","data":[{"area_name":"Greece","pillar_name":"Safety and Security","rankchange":36,"pillar":"Greece-Safety and Security","y":36,"name":"Greece-Safety and Security"},{"area_name":"Malta","pillar_name":"Natural Environment","rankchange":21,"pillar":"Malta-Natural Environment","y":21,"name":"Malta-Natural Environment"},{"area_name":"Spain","pillar_name":"Safety and Security","rankchange":20,"pillar":"Spain-Safety and Security","y":20,"name":"Spain-Safety and Security"},{"area_name":"Iceland","pillar_name":"Economic Quality","rankchange":18,"pillar":"Iceland-Economic Quality","y":18,"name":"Iceland-Economic Quality"},{"area_name":"Greece","pillar_name":"Social Capital","rankchange":17,"pillar":"Greece-Social Capital","y":17,"name":"Greece-Social Capital"},{"area_name":"Malta","pillar_name":"Health","rankchange":17,"pillar":"Malta-Health","y":17,"name":"Malta-Health"},{"area_name":"Malta","pillar_name":"Economic Quality","rankchange":15,"pillar":"Malta-Economic Quality","y":15,"name":"Malta-Economic Quality"},{"area_name":"Spain","pillar_name":"Natural Environment","rankchange":15,"pillar":"Spain-Natural Environment","y":15,"name":"Spain-Natural Environment"},{"area_name":"Switzerland","pillar_name":"Safety and Security","rankchange":14,"pillar":"Switzerland-Safety and Security","y":14,"name":"Switzerland-Safety and Security"},{"area_name":"Ireland","pillar_name":"Economic Quality","rankchange":13,"pillar":"Ireland-Economic Quality","y":13,"name":"Ireland-Economic Quality"}],"type":"bar"}],"xAxis":{"type":"category","title":{"text":"pillar"},"categories":null},"colors":["#0D0887FF"]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>    In the chart of the top 10 countries and their progress projects, it is worth noting that Greece, Malta and Spain are in a strong position to emerge more prosperous from this time of change as they have made great progress on multiple pillars.</p>
+</div>
+</div>
+<div id="noteworthy-countries" class="section level2">
+<h2>Noteworthy countries</h2>
+<p>    Now, we have learned about the changes in the ranking of countries in Western Europe in 10 years. Let’s take a look at Greece, the country with the largest change in ranking, and Switzerland, the country with the most stable change in ranking</p>
+<div id="ranking-changes-the-most-greece" class="section level3">
+<h3>Ranking changes the most: Greece</h3>
+<div id="htmlwidget-6" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"rank"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"2010","data":[{"area_name":"Greece","pillar_name":"Safety and Security","year":"2010","rank":60,"y":60,"name":"Safety and Security"},{"area_name":"Greece","pillar_name":"Personal Freedom","year":"2010","rank":46,"y":46,"name":"Personal Freedom"},{"area_name":"Greece","pillar_name":"Governance","year":"2010","rank":42,"y":42,"name":"Governance"},{"area_name":"Greece","pillar_name":"Social Capital","year":"2010","rank":104,"y":104,"name":"Social Capital"},{"area_name":"Greece","pillar_name":"Investment Environment","year":"2010","rank":49,"y":49,"name":"Investment Environment"},{"area_name":"Greece","pillar_name":"Enterprise Conditions","year":"2010","rank":37,"y":37,"name":"Enterprise Conditions"},{"area_name":"Greece","pillar_name":"Market Access and Infrastructure","year":"2010","rank":34,"y":34,"name":"Market Access and Infrastructure"},{"area_name":"Greece","pillar_name":"Economic Quality","year":"2010","rank":83,"y":83,"name":"Economic Quality"},{"area_name":"Greece","pillar_name":"Living Conditions","year":"2010","rank":35,"y":35,"name":"Living Conditions"},{"area_name":"Greece","pillar_name":"Health","year":"2010","rank":28,"y":28,"name":"Health"},{"area_name":"Greece","pillar_name":"Education","year":"2010","rank":41,"y":41,"name":"Education"},{"area_name":"Greece","pillar_name":"Natural Environment","year":"2010","rank":23,"y":23,"name":"Natural Environment"}],"type":"column"},{"name":"2020","data":[{"area_name":"Greece","pillar_name":"Safety and Security","year":"2020","rank":24,"y":24,"name":"Safety and Security"},{"area_name":"Greece","pillar_name":"Personal Freedom","year":"2020","rank":44,"y":44,"name":"Personal Freedom"},{"area_name":"Greece","pillar_name":"Governance","year":"2020","rank":42,"y":42,"name":"Governance"},{"area_name":"Greece","pillar_name":"Social Capital","year":"2020","rank":87,"y":87,"name":"Social Capital"},{"area_name":"Greece","pillar_name":"Investment Environment","year":"2020","rank":88,"y":88,"name":"Investment Environment"},{"area_name":"Greece","pillar_name":"Enterprise Conditions","year":"2020","rank":42,"y":42,"name":"Enterprise Conditions"},{"area_name":"Greece","pillar_name":"Market Access and Infrastructure","year":"2020","rank":33,"y":33,"name":"Market Access and Infrastructure"},{"area_name":"Greece","pillar_name":"Economic Quality","year":"2020","rank":87,"y":87,"name":"Economic Quality"},{"area_name":"Greece","pillar_name":"Living Conditions","year":"2020","rank":38,"y":38,"name":"Living Conditions"},{"area_name":"Greece","pillar_name":"Health","year":"2020","rank":37,"y":37,"name":"Health"},{"area_name":"Greece","pillar_name":"Education","year":"2020","rank":39,"y":39,"name":"Education"},{"area_name":"Greece","pillar_name":"Natural Environment","year":"2020","rank":32,"y":32,"name":"Natural Environment"}],"type":"column"}],"xAxis":{"type":"category","title":{"text":"pillar_name"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>    Greece’s rise in safety and security, from 60th in 2010 to 24th, was the most marked changes among pillars. Meanwhile, its investment climate index ranks the worst, falling to 88th place from 49th in 2010.</p>
+</div>
+<div id="ranking-the-most-stable-switzerland" class="section level3">
+<h3>Ranking the most stable: Switzerland</h3>
+<div id="htmlwidget-7" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7">{"x":{"hc_opts":{"chart":{"reflow":true},"title":{"text":null},"yAxis":{"title":{"text":"rank"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"2010","data":[{"area_name":"Switzerland","pillar_name":"Safety and Security","year":"2010","rank":15,"y":15,"name":"Safety and Security"},{"area_name":"Switzerland","pillar_name":"Personal Freedom","year":"2010","rank":14,"y":14,"name":"Personal Freedom"},{"area_name":"Switzerland","pillar_name":"Governance","year":"2010","rank":6,"y":6,"name":"Governance"},{"area_name":"Switzerland","pillar_name":"Social Capital","year":"2010","rank":9,"y":9,"name":"Social Capital"},{"area_name":"Switzerland","pillar_name":"Investment Environment","year":"2010","rank":19,"y":19,"name":"Investment Environment"},{"area_name":"Switzerland","pillar_name":"Enterprise Conditions","year":"2010","rank":2,"y":2,"name":"Enterprise Conditions"},{"area_name":"Switzerland","pillar_name":"Market Access and Infrastructure","year":"2010","rank":14,"y":14,"name":"Market Access and Infrastructure"},{"area_name":"Switzerland","pillar_name":"Economic Quality","year":"2010","rank":1,"y":1,"name":"Economic Quality"},{"area_name":"Switzerland","pillar_name":"Living Conditions","year":"2010","rank":7,"y":7,"name":"Living Conditions"},{"area_name":"Switzerland","pillar_name":"Health","year":"2010","rank":5,"y":5,"name":"Health"},{"area_name":"Switzerland","pillar_name":"Education","year":"2010","rank":14,"y":14,"name":"Education"},{"area_name":"Switzerland","pillar_name":"Natural Environment","year":"2010","rank":6,"y":6,"name":"Natural Environment"}],"type":"column"},{"name":"2020","data":[{"area_name":"Switzerland","pillar_name":"Safety and Security","year":"2020","rank":1,"y":1,"name":"Safety and Security"},{"area_name":"Switzerland","pillar_name":"Personal Freedom","year":"2020","rank":12,"y":12,"name":"Personal Freedom"},{"area_name":"Switzerland","pillar_name":"Governance","year":"2020","rank":7,"y":7,"name":"Governance"},{"area_name":"Switzerland","pillar_name":"Social Capital","year":"2020","rank":9,"y":9,"name":"Social Capital"},{"area_name":"Switzerland","pillar_name":"Investment Environment","year":"2020","rank":15,"y":15,"name":"Investment Environment"},{"area_name":"Switzerland","pillar_name":"Enterprise Conditions","year":"2020","rank":3,"y":3,"name":"Enterprise Conditions"},{"area_name":"Switzerland","pillar_name":"Market Access and Infrastructure","year":"2020","rank":11,"y":11,"name":"Market Access and Infrastructure"},{"area_name":"Switzerland","pillar_name":"Economic Quality","year":"2020","rank":1,"y":1,"name":"Economic Quality"},{"area_name":"Switzerland","pillar_name":"Living Conditions","year":"2020","rank":5,"y":5,"name":"Living Conditions"},{"area_name":"Switzerland","pillar_name":"Health","year":"2020","rank":4,"y":4,"name":"Health"},{"area_name":"Switzerland","pillar_name":"Education","year":"2020","rank":12,"y":12,"name":"Education"},{"area_name":"Switzerland","pillar_name":"Natural Environment","year":"2020","rank":6,"y":6,"name":"Natural Environment"}],"type":"column"}],"xAxis":{"type":"category","title":{"text":"pillar_name"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>    Compared with other countries, Switzerland has the least fluctuation. In addition to safety and security, it has increased by 14 places from 15th place in 2010 to 1st place in 2020. Other changes and fluctuations were less than 5. Social capital, economic quality and natural environment were flat.</p>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>    A decade of steadily increasing prosperity has laid a strong basis on which to build for the future of Western Europe. However, the globe has changed considerably recently, and many countries are continuing to grapple with the social, economic and health impacts of COVID-19. Policymakers need to make choices that are likely to have longer-term consequences. Thus, it is important to constantly monitor changes in Western Europe’s prosperity index and rankings.</p>
+</div>
+<div id="source" class="section level2">
+<h2>Source</h2>
+<ul>
+<li><p>Legatum Institute, 2020, Legatum Prosperity Index in 2020. [Online] Available at: <a href="https://li.com/reports/2020-prosperity-index/" class="uri">https://li.com/reports/2020-prosperity-index/</a> [Accessed 18 November 2021].</p></li>
+<li><p>European parliament, 2018, Regional governance in the EU. [Online] Available at: <a href="https://www.europarl.europa.eu/RegData/etudes/BRIE/2018/628244/EPRS_BRI(2018)628244_EN.pdf" class="uri">https://www.europarl.europa.eu/RegData/etudes/BRIE/2018/628244/EPRS_BRI(2018)628244_EN.pdf</a> [Accessed 18 November 2021].</p></li>
+</ul>
+</div>

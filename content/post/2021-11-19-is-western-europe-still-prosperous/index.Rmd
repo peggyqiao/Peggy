@@ -1,0 +1,192 @@
+---
+title: Is Western Europe still prosperous
+author: peggy
+date: '2021-11-19'
+slug: is-western-europe-still-prosperous
+categories:
+  - R
+tags:
+  - plot
+  - R Markdown
+---
+
+```{r global,setup, include=FALSE,echo=FALSE}
+library(tidyverse)
+library(readxl)
+library(highcharter)
+library(viridisLite)
+library(kableExtra)
+library(DiagrammeR)
+Europe <- read_excel("Legatum_Prosperity_Index_Full_2020_Data_Set.xlsx",sheet = "Prosperity Index (regions)")
+```
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Global prosperity had increased steadily in the decade up until the pandemic.struck, owing to improved people's lived experiences and more open economies. The global challenges raised by COVID-19 are considerable, however, it is encouraging that global prosperity in 2020 has reached its highest level ever (Legatum Institute, 2020). The prosperity of Western Europe has dominated the world for centuries, but how does its prosperity rank from 2010 to 2020? What are the pillars of its prosperity? 
+  
+&nbsp;&nbsp;&nbsp;&nbsp;This article is aiming to be a guide, reminding decision makers of what builds and protects prosperity in the most challenging of times and offering insights for investors around the world. It is intended to help you understand where the overall prosperity of Western Europe stands in the world, the pillars of prosperity change from 2010 to 2020 and noteworthy countries. This flowchart could help you quickly understand the structure of this blog.n order to facilitate a clear understanding, I drew a flow chart and put it below
+  
+
+```{r echo=FALSE}
+grViz("
+digraph flowchart {
+# node definitions with substituted label text
+node [fontname = Helvetica, shape = rectangle]
+tab1 [label = @@1]
+tab2 [label = @@2]
+tab3 [label = @@3]
+tab5 [label = @@5]
+tab7 [label = @@7]
+tab6 [label = @@6]
+tab9 [label = @@9]
+tab4 [label = @@4]
+tab8 [label = @@8]
+# edge definitions with the node IDs
+tab1 -> tab2;
+tab1 -> tab3;
+tab2 -> tab4;
+tab3 -> tab4;
+tab4 -> tab5;
+tab4 -> tab6;
+tab6 -> tab7;
+tab5 -> tab7;
+tab7 -> tab8;
+tab7 -> tab9;
+}
+[1]: 'Overall_ranking'
+[2]: 'rank'
+[3]: 'Score'
+[4]: 'change_in_10_years'
+[5]: 'Step_back_TOP10'
+[6]: 'Progress_TOP10'
+[7]: 'Noteworthy_countries'
+[8]: 'Greece'
+[9]: 'Switzerland'
+")
+```
+
+
+
+    
+## Overall ranking of Western Europe (2010-2020)
+
+```{r echo=FALSE}
+data1 <- Europe %>% select(area_group,rank_2010:rank_2020)
+names(data1) <- c('area_group',as.character(2010:2020))
+data1 %>% 
+  arrange(`2010`) %>% 
+  kbl() %>%
+  kable_styling(bootstrap_options = "striped", full_width = F) %>% 
+  row_spec(2, bold = T, color = "white", background = "#D7261E")
+```
+&nbsp;&nbsp;&nbsp;&nbsp;Western Europe still leads the world in prosperity from 2010 to 2020, and the overall ranking across continents has been remarkably stable. What pillars of prosperity do Western Europe have to support its dominance? Have the pillars of its prosperity changed significantly over the decade?
+
+    
+    
+### The pillars of Western Europe change in the rankings (2010-2020)
+
+```{r echo=FALSE}
+data3 <- read_excel("Legatum_Prosperity_Index_Full_2020_Data_Set.xlsx", 
+    sheet = "Pillars x 12 (regions)")
+data3 <- data3 %>% select(area_group,pillar_name,rank_2010:rank_2020) %>% pivot_longer(!c(area_group,pillar_name), names_to = "year", values_to = "rank")
+b <- data3$year %>% str_split('rank_',simplify = TRUE)
+data3$year <- b[,2]
+data3 %>% filter(area_group=='Western Europe') %>% hchart("column", hcaes(x = year, y = rank, group = pillar_name))
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Western Europe was the region with higher levels of prosperity since its pillars used to rank first or second in all regions. And its pillar rankings have not changed significantly, except its governance, which rose from second to first in 2018. The report from European parliament shows that cohesion policy has strengthened the capacity for good governance and administration throughout Europe. This might be one reason why governance in Western Europe has increased significantly.
+
+
+    
+### The pillars of Western Europe change in the score (2010-2020)
+    
+```{r echo=FALSE}
+data2 <- read_excel("Legatum_Prosperity_Index_Full_2020_Data_Set.xlsx", 
+    sheet = "Pillars x 12 (regions)")
+data2 <- data2 %>% select(area_group,pillar_name,score_2010:score_2020) %>% pivot_longer(!c(area_group,pillar_name), names_to = "year", values_to = "score")
+a <- data2$year %>% str_split('score_',simplify = TRUE)
+data2$year <- a[,2]
+data2 %>% filter(area_group=='Western Europe') %>% hchart("line", hcaes(x = year, y = score, group = pillar_name))
+```
+    
+
+&nbsp;&nbsp;&nbsp;&nbsp;There has been no significant change in scores for each of the pillars over the past decade, however, it is worth mentioning that living conditions has always been the main scoring point for Western European countries and social capital is relatively backward compared with other pillars. Therefore, Western European countries may need to redouble their efforts on social capital if they intend to overtake North America as the most prosperous region. However, increases in social capital are often accompanied by decreases in safety and security, which could be seen in the dynamic graph above (Click on the other elements, leaving only these two elements). So, Western European governments also need to focus on safety and security monitoring at the same time.
+  
+## 10-year change ranking
+
+&nbsp;&nbsp;&nbsp;&nbsp;On the premise of understanding the overall ranking changes in Western Europe, let’s take a look at which countries in Western Europe have the greatest decline and progress in the ranking.(Note that I use the data in 2010 minus the 2020 data, so when the score is positive, it shows that the ranking is rising. On the contrary, the ranking decreases.)
+
+### Step back TOP10
+
+```{r echo=FALSE}
+data6 <- read_excel("Legatum_Prosperity_Index_Full_2020_Data_Set.xlsx", sheet = "Pillars x 12")
+data6 <- data6 %>%
+  filter(area_group=='Western Europe') %>% 
+  mutate(rankchange = rank_2010 - rank_2020) %>% 
+  select(area_name,pillar_name,rankchange)
+cols1 <- inferno(5)
+cols1 <- substr(cols1, 0, 10)
+data6 %>% 
+    arrange(rankchange) %>%
+    slice(1:10) %>%
+    mutate(pillar = str_c(area_name,pillar_name,sep = '-'))%>%
+    hchart("bar", hcaes(x = pillar, y = rankchange)) %>% 
+    hc_colors(cols1)
+```
+&nbsp;&nbsp;&nbsp;&nbsp;Belgium and Cyprus have two pillars on this list, so these two countries might have seen their prosperity deteriorate over the last few years. Decision makers of these countries should beware the trap of falling into a mindset of an overdeveloped society and pay more attention to strengthen their economy or social developments. 
+
+
+### Progress TOP10
+
+```{r echo=FALSE}
+cols <- plasma(1)
+cols <- substr(cols, 0, 10)
+data6 %>% 
+    arrange(desc(rankchange)) %>%
+    slice(1:10) %>%
+    mutate(pillar = str_c(area_name,pillar_name,sep = '-'))%>%
+    hchart("bar", hcaes(x = pillar, y = rankchange)) %>% 
+    hc_colors(cols)
+```
+&nbsp;&nbsp;&nbsp;&nbsp;In the chart of the top 10 countries and their progress projects, it is worth noting that Greece, Malta and Spain are in a strong position to emerge more prosperous from this time of change as they have made great progress on multiple pillars. 
+
+## Noteworthy countries
+
+&nbsp;&nbsp;&nbsp;&nbsp;Now, we have learned about the changes in the ranking of countries in Western Europe in 10 years. Let’s take a look at Greece, the country with the largest change in ranking, and Switzerland, the country with the most stable change in ranking
+
+### Ranking changes the most: Greece
+
+```{r echo=FALSE}
+data7 <- read_excel("Legatum_Prosperity_Index_Full_2020_Data_Set.xlsx", sheet = "Pillars x 12")
+data7 <- data7 %>%
+  filter(area_group=='Western Europe') %>% 
+  select(area_name,pillar_name,rank_2010,rank_2020) %>% pivot_longer(!c(area_name,pillar_name), names_to = "year", values_to = "rank")
+f <- data7$year %>% str_split('rank_',simplify = TRUE)
+data7$year <- f[,2]
+#data6 %>% filter(rankchange == min(data6$rankchange)) 
+data7 %>% filter(area_name=='Greece') %>% hchart("column", hcaes(x = pillar_name, y = rank, group = year))
+```
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Greece's rise in safety and security, from 60th in 2010 to 24th, was the most marked changes among pillars. Meanwhile, its investment climate index ranks the worst, falling to 88th place from 49th in 2010.
+
+
+### Ranking the most stable: Switzerland
+
+```{r echo=FALSE}
+#data6 %>% filter(rankchange == 0) %>% group_by(area_name) %>% summarise(n())
+data7 %>% filter(area_name=='Switzerland') %>% hchart("column", hcaes(x = pillar_name, y = rank, group = year))
+```
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;Compared with other countries, Switzerland has the least fluctuation. In addition to safety and security, it has increased by 14 places from 15th place in 2010 to 1st place in 2020. Other changes and fluctuations were less than 5. Social capital, economic quality and natural environment were flat.
+
+## Conclusion
+
+&nbsp;&nbsp;&nbsp;&nbsp;A decade of steadily increasing prosperity has laid a strong basis on which to build for the future of Western Europe. However, the globe has changed considerably recently, and many countries are continuing to grapple with the social, economic and health impacts of COVID-19. Policymakers need to make choices that are likely to have longer-term consequences. Thus, it is important to constantly monitor changes in Western Europe's prosperity index and rankings.
+
+## Source
+
+- Legatum Institute, 2020, Legatum Prosperity Index in 2020. [Online] Available at: <https://li.com/reports/2020-prosperity-index/> [Accessed 18 November 2021].
+
+- European parliament, 2018, Regional governance in the EU. [Online] Available at: <https://www.europarl.europa.eu/RegData/etudes/BRIE/2018/628244/EPRS_BRI(2018)628244_EN.pdf> [Accessed 18 November 2021].

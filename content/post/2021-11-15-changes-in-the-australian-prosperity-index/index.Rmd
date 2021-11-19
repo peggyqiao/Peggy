@@ -1,0 +1,36 @@
+---
+title: Changes in the Australian prosperity Index
+author: peggy
+date: '2021-11-15'
+slug: changes-in-the-australian-prosperity-index
+categories:
+  - R
+tags:
+  - plot
+---
+
+```{r global,setup, include=FALSE,echo=FALSE}
+library(tidyverse)
+library(readxl)
+library(highcharter)
+library(viridisLite)
+```
+
+## Changes in the Australian prosperity Index（2010-2020）
+
+&nbsp;&nbsp;&nbsp;&nbsp;In the overall Prosperity Index standings, Australia comes in 10th place in 2020. What pillars of prosperity do Australia have to support its dominance? Have the pillars of its prosperity changed significantly over the decade?
+
+## The pillars of Australia change in the score (2010-2020)
+
+
+
+```{r echo=FALSE}
+data2 <- read_excel("Legatum_Prosperity_Index_Full_2020_Data_Set.xlsx", 
+    sheet = "Pillars x 12")
+data2 <- data2 %>% select(area_name,pillar_name,score_2010:score_2020) %>% pivot_longer(!c(area_name,pillar_name), names_to = "year", values_to = "score")
+a <- data2$year %>% str_split('score_',simplify = TRUE)
+data2$year <- a[,2]
+data2 %>% filter(area_name=='Australia') %>% hchart("line", hcaes(x = year, y = score, group = pillar_name))
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Australia performs most strongly in living condition and safety and security but is weakest in social capital & economic quality. The biggest improvement compared to a decade ago came in Infrastructure & Market Access.
